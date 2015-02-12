@@ -1,0 +1,26 @@
+// ==========================================
+//   Progress Bars
+// ==========================================
+
+
+.progbar
+	height: 4px
+	border-radius: 2px
+	background: $color-palettes.grey.x-light
+	position: relative
+	margin-bottom: em(46px)
+	+e(status)
+		ui-colors($ui-colors, true)
+
+[class^="progbar__"]
+	display: block
+	width: 50%
+	height: 100%
+	// nib bug: it doesn't accept not numeric values
+	// https://github.com/tj/nib/issues/271
+	border-radius: '%s' % inherit
+	position: relative
+	+p-el(after, 20px, 20px)
+		border-radius: $br--round
+		right: -10px
+		top: -8px

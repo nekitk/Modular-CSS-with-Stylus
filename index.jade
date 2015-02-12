@@ -1,0 +1,172 @@
+mixin nav-item(name, link, current)
+	if current
+		li.nav__item--current
+			a(href=link)= name
+	else
+		li.nav__item
+			a(href=link)= name
+
+mixin grid(columns, with_name)
+	-var class_name = ""
+	if attributes.class
+		- class_name = attributes.class + " "
+	- class_name += "grid__col--" + columns
+	div(class=class_name)
+		if with_name
+			| #{class_name}
+		block
+
+doctype
+html
+
+	head
+		title Poly UI Kit
+		meta(name="viewport", content="width=device-width, initial-scale=1")
+		link(rel="stylesheet", href="css/application.css")
+		link(rel="shortcut icon", href="img/favicon.png")
+	
+	body
+		.grid
+			header.grid__col--12.panel--padded--centered(role="banner")
+				a.site-logo(href="/")
+					b.srt Poly - UI Toolkit
+				nav.navbar(role="navigation")
+					span.icn--nav-toggle.is-displayed-mobile#toggle
+						b.srt Toggle
+					ul.nav.is-collapsed-mobile
+						+nav-item("Typography", "#type")
+						+nav-item("Buttons", "#buttons")
+						+nav-item("Form", "#forms")
+						+nav-item("Bars", "#progbars")
+						+nav-item("Images", "#images")
+						+nav-item("Grid", "#grid")
+						+nav-item("Navigation", "#nav", true)
+
+		.grid.is-hidden-mobile
+			+grid(12)
+				img.img--hero(src="img/hero.jpg", alt="Poly - A simple UI Kit")
+
+		h4.grid#type Typography
+
+		.grid
+			+grid(8).centered
+				h1.headline-primary--grouped Take a look at this amazing headline
+				h2.headline-secondary--grouped Don't forget about the subtitle
+				p This is a typical paragraph for the UI Kit. #[a(href="#") Here is what a link might look like]. The typical font family for this kit is Helvetica Neue.  This kit is intended for clean and refreshing web layouts. No jazz hands here, just the essentials to make dreams come true, with minimal clean web design. The kit comes fully equipped with everything from full responsive media styling to buttons to form fields. #[em I enjoy using italics as well from time to time]. Fell free to create the most amazing designs ever with this kit. I truly hope you enjoy not only the kit but this amazing paragraph as well. :)
+				blockquote You know what really gets me going? A really nice set of block quotes.  That's right, block quotes that say, "Hey, I'm an article you want to read and nurture."
+
+		h4.grid#buttons Buttons
+
+		.grid
+			+grid(12)
+				a.btn--default(href="#") Button Default
+				a.btn--success(href="#") Button Success
+				a.btn--error(href="#") Button Error
+				button.btn--warning Button Warning
+				button.btn--info Button Info
+
+		h4.grid#forms Form Elements
+
+		.grid
+			+grid(7)
+				form.form
+					label.form__label--hidden(for="name") Name:
+					input.form__input#name(type="text", placeholder="Name")
+
+					label.form__label--hidden(for="email") Email:
+					input.form__input#email(type="email", placeholder="email@website.com")
+
+					label.form__label--hidden(for="msg") Message:
+					textarea.form__input#msg(placeholder="Message...", rows="7")
+
+					input.btn--default(type="submit", value="Submit")
+					input.btn--warning(type="reset", value="Reset")
+			+grid(4)
+				img.img--avatar(src="img/avatar.png", alt="Avatar")
+				form
+					label.form__label--hidden(for="username") Username:
+					input.form__input#username(type="text", placeholder="Username")
+
+					label.form__label--hidden(for="password") Password:
+					input.form__input#password(type="password", placeholder="Password")
+
+					input.form__btn(type="submit", value="Login")
+
+		h4.grid#progbars Progress Bars
+
+		.grid
+			+grid(12)
+				.progbar: span.progbar__status--default
+				.progbar: span.progbar__status--success
+				.progbar: span.progbar__status--error
+				.progbar: span.progbar__status--warning
+				.progbar: span.progbar__status--info
+
+		h4.grid#images Images
+
+		.grid
+			+grid(5)
+				img(src="img/sample.jpg", alt="sample image")
+			+grid(5)
+				img.img--wrap(src="img/sample.jpg", alt="sample image")
+			+grid(2)
+				img.img--avatar(src="img/avatar.png", alt="Avatar")
+
+		h4.grid#grid Grid System
+
+		.theme__poly
+			.grid
+				+grid(12, true)
+			.grid
+				+grid(6, true)
+				+grid(6, true)
+			.grid
+				+grid(4, true)
+				+grid(4, true)
+				+grid(4, true)
+			.grid
+				+grid(3, true)
+				+grid(3, true)
+				+grid(3, true)
+				+grid(3, true)
+			.grid
+				+grid(5, true)
+				+grid(7, true)
+			.grid
+				+grid(8, true)
+				+grid(4, true)
+			.grid
+				+grid(7, true).centered
+
+		.grid
+			+grid(7)
+				h4#nav Navigation
+				ul.nav(role="navigation")
+					+nav-item("Nav Link", "#")
+					+nav-item("Nav Link 2", "#")
+					+nav-item("Nav Current", "#", true)
+				p This is what the navigation menu looks like when the screen is at 769px or higher. When the screen is less than 769px, you will have the option to display a toggle menu icon.
+			+grid(4)
+				h4 Offcanvas Menu
+				.offcanvas
+					span.icn--close
+						b.srt Close
+					ul.menu(role="navigation")
+						a.menu__link(href="#") Link 1
+						a.menu__link(href="#") Link 2
+						a.menu__link(href="#") Link 3
+						a.menu__link--end(href="#") Link 4
+
+		h4.grid Footer
+
+		.grid
+			footer.grid__col--12.panel--padded--centered(role="contentinfo")
+				a.site-logo(href="#")
+					b.srt Poly - UI Toolkit
+				p A simple UI Kit for everyone to share and enjoy.
+
+		script(src="http://code.jquery.com/jquery-2.1.1.min.js")
+		script.
+			$('#toggle').click(function() {
+				$(this).next('.nav').toggleClass("is-collapsed-mobile");
+			});

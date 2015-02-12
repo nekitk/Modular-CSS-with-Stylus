@@ -1,0 +1,14 @@
+// ==========================================
+//   Grid Display
+// ==========================================
+
+
+.is-displayed-mobile
+	+mq(small)
+		display: block
+		// '/' is equal to Sass's @at-root
+		/.is-hidden-mobile
+				display: none
+	
+	+mq(medium)
+		display: none

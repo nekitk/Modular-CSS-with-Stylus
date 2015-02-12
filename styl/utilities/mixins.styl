@@ -1,0 +1,94 @@
+// ==========================================
+//   Mixins
+// ==========================================
+
+
+// BEM Selectors
+
+e($element)
+	&__{$element}
+		{block}
+
+m($modifier)
+	&--{$modifier}
+		{block}
+
+
+// Media Queries
+
+mq($break)
+	if $break == "small"
+		@media (min-width: $brkpoint--sm) and (max-width: $brkpoint--md)
+			{block}
+	else if $break == "medium"
+		@media (min-width: $brkpoint--md + 1)
+			{block}
+	else if $break == "large"
+		@media (min-width: $brkpoint--lg + 1)
+			{block}
+	else
+		error("Incorrect break value for MQ mixin: " + $break)
+
+
+// Generate modifier color classes
+
+ui-colors($map, $p-el = null)
+	for $theme, $color in $map
+		+m($theme)
+			background-color: $color
+			
+			// This pseudo-element is used for bg color on progbars
+			if $p-el
+				&:after
+					background-color: lighten($color, 8%)
+
+
+// Generating :before or :after pseudo-element shapes
+
+p-el(	$el,
+			$el-w = null,
+			$el-h = null
+)
+	if $el == "before" or $el == "after"
+		&:{$el}
+			@extend $pseudos
+			width: $el-w
+			height: $el-h
+			{block}
+	else
+		error("" + $el + " is not a valid pseudo-element")
+
+
+// Image replacement
+
+// $disp is quoted, otherwise get "Maximum stack size exceeded"
+img-replace($img, $w, $h, $disp = 'block')
+	background-image: url($path--rel + "/" + $img)
+	background-repeat: no-repeat
+	width: $w
+	height: $h
+	display: unquote($disp)
+
+
+// Adjacent sibling margins
+
+doubly($margin = 1em)
+	& + &
+		margin-left: $margin
+		{block}
+
+
+// Grid columns
+
+g-columns()
+	for $i in (1..$g-col-count)
+		$target = ($g-col-width * $i) + ($g-gutter-width * ($i - 1))
+		&--{$i}
+			width: percentage($target / $g-context)
+
+
+// Set font size and line-height
+
+font-and-line($font-size, $line-height-px)
+	font-size: em($font-size)
+	line-height: round(unit($line-height-px / $font-size, ""), 2)

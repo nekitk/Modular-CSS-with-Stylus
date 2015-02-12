@@ -1,0 +1,64 @@
+// ==========================================
+//   Placeholders
+// ==========================================
+
+
+// Nav Items
+
+$nav-item-horz
+	+mq(medium)
+		display: inline-block
+		margin: 0 em(10px)
+
+$nav-item-link
+	font-weight: $font-weight.light
+	text-align: center
+	font-size: em(18px)
+	display: block
+	padding: em(8px, 18px)
+	border-bottom: 1px solid transparent
+	+mq(small)
+		border-color: $color-palettes.grey.xx-light
+		padding-top: p = em(14px, 18px)
+		padding-bottom: p
+
+$nav-item-on
+	color: $color-palettes.black.base
+	border-color: $color-primary
+
+
+// Buttons
+
+$btn
+	padding: 15px 30px
+	border: 0
+	border-radius: $br--default
+	color: $white
+	text-transform: uppercase
+	font-size: em(14px)
+	font-weight: $font-weight.medium
+	transition: opacity $trns-duration
+	display: block
+	&:hover
+		opacity: .75
+	&:active
+		opacity: 1
+
+
+// Menu Link
+
+$menu-link
+	display: block
+	padding-top: p = em(18px, 18px)
+	padding-bottom: p
+	color: $white
+	text-align: center
+	text-shadow: 0 1px $color-shadow
+	font-size: em(18px)
+
+
+// Icons
+
+$icn--ui
+	line-height: 0
+	cursor: pointer

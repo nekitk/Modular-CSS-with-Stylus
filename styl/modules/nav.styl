@@ -1,0 +1,24 @@
+// ==========================================
+//   Nav
+// ==========================================
+
+
+.nav
+	margin-top: em(20px)
+	margin-bottom: em(30px)
+	+e(item)
+		// Inactive items
+		&
+			@extend $nav-item-horz
+		a
+			@extend $nav-item-link
+			color: $color-palettes.grey.base
+			&:hover
+				@extend $nav-item-on
+		// Current item
+		+m(current)
+			&
+				@extend $nav-item-horz
+				a
+					@extend $nav-item-link
+					@extend $nav-item-on

@@ -1,0 +1,15 @@
+// ==========================================
+//   Grid Container
+// ==========================================
+
+
+.grid
+	@extend $clearfix
+	@extend .centered
+	width: 90%
+	
+	[class*="grid__col--"] > &
+		width: 100%
+	
+	+mq(large)
+		max-width: $g-cont-max-w

@@ -1,0 +1,27 @@
+// ==========================================
+//   Functions
+// ==========================================
+
+
+// Import if Google Fonts URL is defined
+
+if $font-url--google
+	@import url($font-url--google)
+
+
+// Calculate em values
+
+em($target, $context = $base__font-size)
+	round(1em * ($target / $context), 3)
+
+
+// Calculate percentage
+
+percentage($value)
+	unit(round($value * 100, 1), "%")
+
+
+// Set the "context" width for the grid
+
+g-context($g-col-width, $g-col-count, $g-gutter-width)
+	$g-context = ($g-col-width * $g-col-count) + ($g-gutter-width * ($g-col-count - 1))

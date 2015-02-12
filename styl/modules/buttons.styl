@@ -1,0 +1,17 @@
+// ==========================================
+//   Buttons
+// ==========================================
+
+.btn
+	ui-colors($ui-colors)
+
+[class^="btn--"]
+	@extend $btn
+	@extend $center-align
+	margin-bottom: em(20px, 14px)
+	+mq(small)
+		width: 100%
+	+mq(medium)
+		width: auto
+		display: inline-block
+		doubly(20px)

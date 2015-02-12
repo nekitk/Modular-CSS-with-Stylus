@@ -1,0 +1,20 @@
+// ==========================================
+//   Panel
+// ==========================================
+
+
+.panel
+	@extend $panel-default
+	+m(centered)
+		// & is needed to use @extend in block of mixin
+		// https://github.com/LearnBoost/stylus/issues/1507
+		&
+			@extend $panel-default
+			@extend $center-align
+	+m(padded)
+		&
+			@extend $panel-padding
+			+m(centered)
+				&
+					@extend $panel-padding
+					@extend $center-align
